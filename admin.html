@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="پنل مدیریت بصیرت‌بان" />
+  <title>پنل ادمین | بصیرت‌بان</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='12' width='64' height='64' fill='%230369a1'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='32' fill='white'%3Eب%3C/text%3E%3C/svg%3E" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ["Vazirmatn", "Tahoma", "sans-serif"] } } } };</script>
+  <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body class="bg-slate-100 text-slate-800">
+  <div id="skeleton-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-white/80">
+    <div class="w-72 space-y-3">
+      <div class="skeleton h-6 rounded-lg"></div>
+      <div class="skeleton h-24 rounded-xl"></div>
+      <div class="skeleton h-24 rounded-xl"></div>
+      <p class="text-center text-sm font-semibold text-sky-800">در حال آماده‌سازی داشبورد...</p>
+    </div>
+  </div>
+
+  <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-slate-900/40 lg:hidden"></div>
+
+  <aside id="sidebar" class="fixed inset-y-0 right-0 z-40 flex w-72 translate-x-full flex-col border-l border-slate-200 bg-white shadow-xl transition-transform lg:w-72 lg:translate-x-0">
+    <div class="flex items-center justify-between border-b border-slate-200 px-4 py-4">
+      <a href="index.html" class="flex items-center gap-2">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-700 font-extrabold text-white">ب</span>
+        <span>
+          <span class="nav-label block font-extrabold text-sky-800">بصیرت‌بان</span>
+          <span class="nav-label block text-[11px] font-semibold text-sky-600">BasiratBaan</span>
+        </span>
+      </a>
+      <button id="sidebar-close" class="btn-touch rounded-lg border border-slate-200 px-2 lg:hidden" aria-label="بستن منو">✕</button>
+    </div>
+    <nav class="flex-1 space-y-1 overflow-y-auto p-3 text-sm font-semibold">
+      <a href="#home" data-view="home" class="flex items-center gap-3 rounded-xl px-3 py-3">🏠 <span class="nav-label">خانه پنل</span></a>
+      <a href="#sales" data-view="sales" class="flex items-center gap-3 rounded-xl px-3 py-3">📈 <span class="nav-label">فروش</span></a>
+      <a href="#finance" data-view="finance" class="flex items-center gap-3 rounded-xl px-3 py-3">💰 <span class="nav-label">مالی</span></a>
+      <a href="#hr" data-view="hr" class="flex items-center gap-3 rounded-xl px-3 py-3">👥 <span class="nav-label">منابع انسانی</span></a>
+      <a href="#ceo" data-view="ceo" class="flex items-center gap-3 rounded-xl px-3 py-3">👔 <span class="nav-label">مدیرعامل</span></a>
+      <a href="#settings" data-view="settings" class="flex items-center gap-3 rounded-xl px-3 py-3">⚙️ <span class="nav-label">تنظیمات</span></a>
+    </nav>
+    <div class="border-t border-slate-200 p-3">
+      <button id="sidebar-collapse" class="btn-touch hidden w-full rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold lg:inline-flex">جمع کردن منو</button>
+      <a href="index.html" class="btn-touch mt-2 inline-flex w-full justify-center rounded-xl bg-slate-100 py-2 text-sm font-semibold">خروج به لندینگ</a>
+    </div>
+  </aside>
+
+  <div class="lg:mr-72">
+    <header class="sticky top-0 z-20 flex items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 py-3">
+      <div class="flex min-w-0 flex-1 items-center gap-2">
+        <button id="sidebar-open" class="btn-touch rounded-xl border border-slate-200 px-3 lg:hidden" aria-label="باز کردن منو">☰</button>
+        <input type="search" placeholder="جستجوی نمایشی در پنل..." class="hidden w-full max-w-md rounded-xl border border-slate-300 px-3 py-2 text-sm sm:block" />
+      </div>
+      <div class="relative flex items-center gap-2">
+        <button id="notif-btn" class="btn-touch relative rounded-xl border border-slate-200 px-3" aria-label="اعلان‌ها">🔔<span class="absolute -top-1 -left-1 h-2 w-2 rounded-full bg-rose-600"></span></button>
+        <div id="notif-menu" class="card absolute left-0 top-12 z-30 hidden w-72 p-3 text-sm">
+          <p class="font-bold">اعلان‌ها</p>
+          <ul class="mt-2 space-y-2 text-slate-600">
+            <li class="rounded-lg bg-sky-50 p-2">فاکتور ۱۲۴ تازه ثبت شد.</li>
+            <li class="rounded-lg bg-amber-50 p-2">۳ درخواست مرخصی در انتظار تأیید است.</li>
+            <li class="rounded-lg bg-violet-50 p-2">گردش‌کار فراگستر به تأخیر خورده است.</li>
+          </ul>
+        </div>
+        <button id="profile-btn" class="btn-touch flex items-center gap-2 rounded-xl border border-slate-200 px-2 py-1">
+          <span class="flex h-9 w-9 items-center justify-center rounded-full bg-sky-700 text-sm font-bold text-white">ن.م</span>
+          <span class="hidden text-right text-sm font-bold sm:block">ندا محمدی<br /><span class="text-xs font-medium text-slate-500">مدیر سامانه</span></span>
+        </button>
+        <div id="profile-menu" class="card absolute left-0 top-12 z-30 hidden w-48 overflow-hidden text-sm">
+          <a class="block px-4 py-3 hover:bg-slate-50" href="#settings" data-view="settings">پروفایل</a>
+          <a class="block px-4 py-3 hover:bg-slate-50" href="#settings" data-view="settings">تنظیمات</a>
+          <a class="block border-t px-4 py-3 hover:bg-slate-50" href="index.html">خروج</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="p-4 md:p-6">
+      <section data-view-panel="home" class="space-y-6">
+        <p class="text-sm text-slate-500">خانه پنل / خلاصه</p>
+        <h1 class="text-2xl font-extrabold">خلاصه مدیریتی</h1>
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <button data-jump="sales" class="card p-5 text-right"><p class="text-sm text-blue-700">فروش</p><p class="mt-2 text-2xl font-extrabold">۷.۱ میلیارد</p><p class="text-sm font-semibold text-emerald-700">+۱۲٪ نسبت به ماه قبل</p></button>
+          <button data-jump="finance" class="card p-5 text-right"><p class="text-sm text-emerald-700">سود ناخالص</p><p class="mt-2 text-2xl font-extrabold">۱.۸ میلیارد</p><p class="text-sm font-semibold text-emerald-700">+۴٪</p></button>
+          <button data-jump="hr" class="card p-5 text-right"><p class="text-sm text-amber-700">پرسنل فعال</p><p class="mt-2 text-2xl font-extrabold">۱۱۵ نفر</p><p class="text-sm font-semibold text-rose-600">ترک خدمت ۲٪</p></button>
+          <button data-jump="ceo" class="card p-5 text-right"><p class="text-sm text-violet-700">فرآیندهای باز</p><p class="mt-2 text-2xl font-extrabold">۲۷ مورد</p><p class="text-sm font-semibold text-violet-700">فراگستر متصل</p></button>
+        </div>
+      </section>
+
+      <section data-view-panel="sales" class="hidden space-y-6">
+        <p class="text-sm text-slate-500">خانه / فروش</p>
+        <h1 class="text-2xl font-extrabold text-blue-700">داشبورد مدیریت فروش</h1>
+        <div class="card grid gap-3 p-4 md:grid-cols-4">
+          <select data-filter class="rounded-xl border border-slate-300 px-3 py-2"><option>بازه: ۶ ماه اخیر</option><option>امسال</option><option>فصل جاری</option></select>
+          <select data-filter class="rounded-xl border border-slate-300 px-3 py-2"><option>همه کانال‌ها</option><option>حضوری</option><option>آنلاین</option></select>
+          <select data-filter class="rounded-xl border border-slate-300 px-3 py-2"><option>همه محصولات</option><option>محصول الف</option><option>خدمات</option></select>
+          <select data-filter class="rounded-xl border border-slate-300 px-3 py-2"><option>همه مناطق</option><option>تهران</option><option>اصفهان</option></select>
+          <p data-filter-note class="hidden md:col-span-4 text-sm font-semibold text-blue-700"></p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="card border-blue-200 p-4"><p class="text-sm">فروش کل</p><p class="text-2xl font-extrabold">۷.۱ میلیارد</p><p class="text-sm text-emerald-700">+۱۲٪</p></div>
+          <div class="card border-blue-200 p-4"><p class="text-sm">تعداد فاکتور</p><p class="text-2xl font-extrabold">۱٬۲۴۸</p><p class="text-sm text-emerald-700">+۶٪</p></div>
+          <div class="card border-blue-200 p-4"><p class="text-sm">میانگین سبد</p><p class="text-2xl font-extrabold">۵.۷ میلیون</p><p class="text-sm text-rose-600">-۲٪</p></div>
+          <div class="card border-blue-200 p-4"><p class="text-sm">نرخ رشد</p><p class="text-2xl font-extrabold">۱۲٪</p><p class="text-sm text-emerald-700">هدف ۱۰٪</p></div>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="card p-4"><h3 class="mb-2 font-bold">روند فروش ماهانه</h3><div class="chart-box"><canvas id="sales-trend"></canvas></div></div>
+          <div class="card p-4"><h3 class="mb-2 font-bold">ترکیب محصولات</h3><div class="chart-box"><canvas id="sales-mix"></canvas></div></div>
+        </div>
+        <div class="card p-4">
+          <h3 class="mb-3 font-bold">آخرین سفارش‌ها</h3>
+          <div class="table-wrap">
+            <table class="min-w-full text-right text-sm">
+              <thead class="bg-blue-50"><tr><th class="p-3">مشتری</th><th class="p-3">مبلغ</th><th class="p-3">وضعیت</th></tr></thead>
+              <tbody>
+                <tr class="border-t"><td class="p-3">شرکت آرمان</td><td class="p-3">۱۸۵ میلیون</td><td class="p-3 text-emerald-700">نهایی</td></tr>
+                <tr class="border-t"><td class="p-3">فروشگاه نور</td><td class="p-3">۴۲ میلیون</td><td class="p-3 text-amber-700">در انتظار</td></tr>
+                <tr class="border-t"><td class="p-3">هلدینگ پارس</td><td class="p-3">۲۶۰ میلیون</td><td class="p-3 text-emerald-700">نهایی</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-3 text-xs text-slate-500">صفحه‌بندی ظاهری: ۱ از ۸</p>
+        </div>
+      </section>
+
+      <section data-view-panel="finance" class="hidden space-y-6">
+        <p class="text-sm text-slate-500">خانه / مالی</p>
+        <h1 class="text-2xl font-extrabold text-emerald-700">داشبورد مدیریت مالی</h1>
+        <div class="card grid gap-3 p-4 md:grid-cols-3">
+          <select data-filter class="rounded-xl border px-3 py-2"><option>دوره مالی ۱۴۰۴</option><option>۱۴۰۳</option></select>
+          <select data-filter class="rounded-xl border px-3 py-2"><option>همه مراکز هزینه</option><option>عملیات</option><option>اداری</option></select>
+          <select data-filter class="rounded-xl border px-3 py-2"><option>همه اسناد</option><option>سند حسابداری</option><option>خزانه</option></select>
+          <p data-filter-note class="hidden md:col-span-3 text-sm font-semibold text-emerald-700"></p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="card border-emerald-200 p-4"><p class="text-sm">درآمد</p><p class="text-2xl font-extrabold">۹.۴ میلیارد</p></div>
+          <div class="card border-emerald-200 p-4"><p class="text-sm">هزینه</p><p class="text-2xl font-extrabold">۷.۶ میلیارد</p></div>
+          <div class="card border-emerald-200 p-4"><p class="text-sm">سود ناخالص</p><p class="text-2xl font-extrabold">۱.۸ میلیارد</p></div>
+          <div class="card border-emerald-200 p-4"><p class="text-sm">مانده حساب‌ها</p><p class="text-2xl font-extrabold">۳.۲ میلیارد</p></div>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="card p-4"><h3 class="mb-2 font-bold">درآمد در برابر هزینه</h3><div class="chart-box"><canvas id="finance-bar"></canvas></div></div>
+          <div class="card p-4"><h3 class="mb-2 font-bold">جریان نقدینگی</h3><div class="chart-box"><canvas id="finance-cash"></canvas></div></div>
+        </div>
+        <div class="card p-4">
+          <h3 class="mb-3 font-bold">اسناد مالی نمونه</h3>
+          <div class="table-wrap">
+            <table class="min-w-full text-right text-sm">
+              <thead class="bg-emerald-50"><tr><th class="p-3">شماره سند</th><th class="p-3">شرح</th><th class="p-3">مبلغ</th><th class="p-3">وضعیت</th></tr></thead>
+              <tbody>
+                <tr class="border-t"><td class="p-3">FIN-1404-088</td><td class="p-3">ثبت فروش عمده</td><td class="p-3">۴۲۰ میلیون</td><td class="p-3 text-emerald-700">تأیید شده</td></tr>
+                <tr class="border-t"><td class="p-3">FIN-1404-089</td><td class="p-3">هزینه اجاره</td><td class="p-3">۹۵ میلیون</td><td class="p-3 text-amber-700">پیش‌نویس</td></tr>
+                <tr class="border-t"><td class="p-3">FIN-1404-090</td><td class="p-3">پرداخت پیمانکار</td><td class="p-3">۶۸ میلیون</td><td class="p-3 text-emerald-700">تأیید شده</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section data-view-panel="hr" class="hidden space-y-6">
+        <p class="text-sm text-slate-500">خانه / منابع انسانی</p>
+        <h1 class="text-2xl font-extrabold text-amber-700">داشبورد مدیریت منابع انسانی</h1>
+        <div class="card grid gap-3 p-4 md:grid-cols-3">
+          <select data-filter class="rounded-xl border px-3 py-2"><option>همه واحدها</option><option>فروش</option><option>عملیات</option></select>
+          <select data-filter class="rounded-xl border px-3 py-2"><option>همه قراردادها</option><option>رسمی</option><option>پیمانی</option></select>
+          <select data-filter class="rounded-xl border px-3 py-2"><option>همه وضعیت حضور</option><option>حاضر</option><option>مرخصی</option></select>
+          <p data-filter-note class="hidden md:col-span-3 text-sm font-semibold text-amber-700"></p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="card border-amber-200 p-4"><p class="text-sm">تعداد پرسنل</p><p class="text-2xl font-extrabold">۱۱۵</p></div>
+          <div class="card border-amber-200 p-4"><p class="text-sm">جذب جدید</p><p class="text-2xl font-extrabold">۶ نفر</p></div>
+          <div class="card border-amber-200 p-4"><p class="text-sm">نرخ ترک خدمت</p><p class="text-2xl font-extrabold">۲٪</p></div>
+          <div class="card border-amber-200 p-4"><p class="text-sm">ساعات اضافه‌کاری</p><p class="text-2xl font-extrabold">۴۸۰</p></div>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="card p-4"><h3 class="mb-2 font-bold">توزیع پرسنل بر اساس واحد</h3><div class="chart-box"><canvas id="hr-units"></canvas></div></div>
+          <div class="card p-4"><h3 class="mb-2 font-bold">حضور و غیاب ماهانه</h3><div class="chart-box"><canvas id="hr-attend"></canvas></div></div>
+        </div>
+        <div class="card p-4">
+          <h3 class="mb-3 font-bold">فهرست پرسنل نمونه</h3>
+          <div class="table-wrap">
+            <table class="min-w-full text-right text-sm">
+              <thead class="bg-amber-50"><tr><th class="p-3">نام</th><th class="p-3">سمت</th><th class="p-3">واحد</th><th class="p-3">وضعیت</th></tr></thead>
+              <tbody>
+                <tr class="border-t"><td class="p-3 whitespace-nowrap">علی رضایی</td><td class="p-3">کارشناس فروش</td><td class="p-3">فروش</td><td class="p-3 text-emerald-700">حاضر</td></tr>
+                <tr class="border-t"><td class="p-3 whitespace-nowrap">سارا کریمی</td><td class="p-3">حسابدار</td><td class="p-3">مالی</td><td class="p-3 text-amber-700">مرخصی</td></tr>
+                <tr class="border-t"><td class="p-3 whitespace-nowrap">حسین نادری</td><td class="p-3">سرپرست عملیات</td><td class="p-3">عملیات</td><td class="p-3 text-emerald-700">حاضر</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section data-view-panel="ceo" class="hidden space-y-6">
+        <p class="text-sm text-slate-500">خانه / مدیرعامل</p>
+        <div class="flex flex-wrap items-center gap-2">
+          <h1 class="text-2xl font-extrabold text-violet-700">داشبورد جامع مدیرعامل</h1>
+          <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800">سپیدار: متصل</span>
+          <span class="rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-800">فراگستر: متصل</span>
+        </div>
+        <div class="card grid gap-3 p-4 md:grid-cols-3">
+          <select data-filter class="rounded-xl border px-3 py-2"><option>سازمان مادر</option><option>شعبه تهران</option></select>
+          <select data-filter class="rounded-xl border px-3 py-2"><option>دوره: شهریور ۱۴۰۴</option><option>سال جاری</option></select>
+          <select data-filter class="rounded-xl border px-3 py-2"><option>همه حوزه‌ها</option><option>فروش</option><option>عملیات</option></select>
+          <p data-filter-note class="hidden md:col-span-3 text-sm font-semibold text-violet-700"></p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div class="card border-violet-200 p-4"><p class="text-sm">فروش</p><p class="text-2xl font-extrabold">۷.۱ میلیارد</p></div>
+          <div class="card border-violet-200 p-4"><p class="text-sm">سود</p><p class="text-2xl font-extrabold">۱.۸ میلیارد</p></div>
+          <div class="card border-violet-200 p-4"><p class="text-sm">نیروی کلیدی</p><p class="text-2xl font-extrabold">۱۸ نفر</p></div>
+          <div class="card border-violet-200 p-4"><p class="text-sm">وضعیت فرآیندها</p><p class="text-2xl font-extrabold">۸۶٪ به‌موقع</p></div>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-3">
+          <div class="card p-4 lg:col-span-2"><h3 class="mb-2 font-bold">نمای ۳۶۰ درجه عملکرد</h3><div class="chart-box"><canvas id="ceo-radar"></canvas></div></div>
+          <div class="card p-4">
+            <h3 class="font-bold text-violet-800">گردش‌کار فراگستر</h3>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li class="rounded-lg border p-2">نامه قرارداد — در انتظار امضا</li>
+              <li class="rounded-lg border p-2">درخواست خرید — تأیید مالی</li>
+              <li class="rounded-lg border p-2">حکم کارگزینی — بایگانی</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="card p-4">
+            <h3 class="font-bold text-emerald-800">خلاصه عملیاتی سپیدار</h3>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li class="flex justify-between border-b py-2"><span>مانده بانک</span><strong>۳.۲ میلیارد</strong></li>
+              <li class="flex justify-between border-b py-2"><span>مطالبات</span><strong>۱.۱ میلیارد</strong></li>
+              <li class="flex justify-between py-2"><span>موجودی کالا</span><strong>۸۴۰ میلیون</strong></li>
+            </ul>
+          </div>
+          <div class="card p-4">
+            <h3 class="mb-3 font-bold">هشدارهای مدیریتی</h3>
+            <div class="table-wrap">
+              <table class="min-w-full text-right text-sm">
+                <thead class="bg-violet-50"><tr><th class="p-3">موضوع</th><th class="p-3">اولویت</th></tr></thead>
+                <tbody>
+                  <tr class="border-t"><td class="p-3">کاهش حاشیه محصول ب</td><td class="p-3 text-rose-700">بالا</td></tr>
+                  <tr class="border-t"><td class="p-3">تأخیر گردش‌کار خرید</td><td class="p-3 text-amber-700">متوسط</td></tr>
+                  <tr class="border-t"><td class="p-3">رشد فروش آنلاین</td><td class="p-3 text-emerald-700">فرصت</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-view-panel="settings" class="hidden space-y-6">
+        <p class="text-sm text-slate-500">خانه / تنظیمات</p>
+        <h1 class="text-2xl font-extrabold">تنظیمات نمایشی</h1>
+        <div class="card max-w-xl space-y-4 p-6">
+          <p>این بخش فقط ظاهر تنظیمات است و ذخیره‌سازی ندارد.</p>
+          <label class="block font-semibold">نام نمایشی</label>
+          <input class="w-full rounded-xl border px-3 py-3" value="ندا محمدی" />
+          <label class="block font-semibold">زبان</label>
+          <select class="w-full rounded-xl border px-3 py-3"><option>فارسی (RTL)</option></select>
+          <button type="button" class="btn-touch rounded-xl bg-sky-700 px-5 py-2 font-bold text-white">ذخیره نمایشی</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
