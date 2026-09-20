@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="بصیرت‌بان (BasiratBaan) سامانه هوش تجاری و داشبوردهای مدیریتی فروش، مالی، منابع انسانی و مدیرعامل." />
+  <title>بصیرت‌بان | BasiratBaan</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='12' width='64' height='64' fill='%230369a1'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='32' fill='white'%3Eب%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Vazirmatn", "Tahoma", "sans-serif"] },
+          colors: { brand: { 50: "#f0f9ff", 600: "#0284c7", 700: "#0369a1", 800: "#075985" } }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/app.css" />
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <div id="toast" class="hidden fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-white shadow-lg"></div>
+
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
+      <a href="#hero" class="flex min-h-[44px] items-center gap-3">
+        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-700 text-lg font-extrabold text-white shadow-md">ب</span>
+        <span>
+          <span class="block text-lg font-extrabold text-sky-800">بصیرت‌بان</span>
+          <span class="block text-xs font-semibold tracking-wide text-sky-600">BasiratBaan</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-6 text-sm font-semibold lg:flex">
+        <a class="hover:text-sky-700" href="#about">معرفی</a>
+        <a class="hover:text-sky-700" href="#dashboards">داشبوردها</a>
+        <a class="hover:text-sky-700" href="#features">ویژگی‌ها</a>
+        <a class="hover:text-sky-700" href="#benefits">مزایا</a>
+        <a class="hover:text-sky-700" href="#pricing">تعرفه‌ها</a>
+        <a class="hover:text-sky-700" href="#contact">تماس</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="login.html" class="btn-touch inline-flex items-center rounded-xl bg-sky-700 px-4 py-2 text-sm font-bold text-white shadow-md hover:bg-sky-800">ورود به سامانه</a>
+        <button id="menu-btn" class="btn-touch inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-3 lg:hidden" aria-expanded="false" aria-label="باز کردن منو">☰</button>
+      </div>
+    </div>
+    <div id="mobile-nav" class="hidden border-t border-slate-200 bg-white lg:hidden">
+      <div class="flex flex-col gap-1 px-4 py-3 text-sm font-semibold">
+        <a class="rounded-lg px-3 py-3 hover:bg-sky-50" href="#about">معرفی</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-sky-50" href="#dashboards">داشبوردها</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-sky-50" href="#features">ویژگی‌ها</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-sky-50" href="#benefits">مزایا</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-sky-50" href="#pricing">تعرفه‌ها</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-sky-50" href="#contact">تماس</a>
+        <a class="rounded-lg bg-sky-700 px-3 py-3 text-center text-white" href="login.html">ورود به پنل ادمین</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 lg:grid-cols-2 lg:py-20">
+      <div>
+        <p class="mb-3 inline-flex rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-sm font-bold text-sky-800">سامانه جامع هوش تجاری</p>
+        <h1 class="text-3xl font-extrabold leading-snug text-slate-900 md:text-5xl">تصمیم‌های مدیریتی را با <span class="text-sky-700">بصیرت‌بان</span> روشن کنید</h1>
+        <p class="mt-4 text-lg leading-8 text-slate-600">نمای یکپارچه فروش، مالی، منابع انسانی و عملکرد سازمان — طراحی‌شده برای مدیران ایرانی، کاملاً راست‌چین و آماده ارائه به مشتری.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="login.html" class="btn-touch inline-flex items-center rounded-xl bg-sky-700 px-6 py-3 font-bold text-white shadow-lg hover:bg-sky-800">ورود به پنل ادمین</a>
+          <a href="#contact" class="btn-touch inline-flex items-center rounded-xl border-2 border-sky-700 px-6 py-3 font-bold text-sky-800 hover:bg-sky-50">درخواست مشاوره</a>
+        </div>
+      </div>
+      <div class="card overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=80" alt="نمای داشبورد هوش تجاری روی صفحه نمایش" width="1400" height="900" class="h-full w-full object-cover" />
+      </div>
+    </section>
+
+    <section id="about" class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-4">
+        <h2 class="text-center text-3xl font-extrabold text-slate-900">معرفی پروژه</h2>
+        <p class="mx-auto mt-3 max-w-3xl text-center text-slate-600">بصیرت‌بان یک لایه نمایشی حرفه‌ای برای داشبوردهای مدیریتی است؛ داده را خوانا می‌کند، روندها را نشان می‌دهد و مسیر تصمیم را کوتاه می‌سازد.</p>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <article class="card p-6">
+            <p class="text-3xl">📊</p>
+            <h3 class="mt-3 text-xl font-bold">تحلیل شفاف</h3>
+            <p class="mt-2 text-slate-600">شاخص‌های کلیدی در یک نگاه، بدون شلوغی گزارش‌های سنتی.</p>
+          </article>
+          <article class="card p-6">
+            <p class="text-3xl">💼</p>
+            <h3 class="mt-3 text-xl font-bold">زبان کسب‌وکار</h3>
+            <p class="mt-2 text-slate-600">مناسب هیئت‌مدیره، مدیرعامل و مدیران واحد؛ نه فقط تیم IT.</p>
+          </article>
+          <article class="card p-6">
+            <p class="text-3xl">👥</p>
+            <h3 class="mt-3 text-xl font-bold">نگاه به سرمایه انسانی</h3>
+            <p class="mt-2 text-slate-600">وضعیت نیرو، حضور و روند جذب در کنار عملکرد مالی دیده می‌شود.</p>
+          </article>
+          <article class="card p-6">
+            <p class="text-3xl">🚀</p>
+            <h3 class="mt-3 text-xl font-bold">آماده رشد</h3>
+            <p class="mt-2 text-slate-600">از پیش‌نمایش استاتیک تا استقرار داشبوردهای واقعی Power BI.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboards" class="py-16">
+      <div class="mx-auto max-w-7xl px-4">
+        <h2 class="text-center text-3xl font-extrabold">چهار داشبورد تخصصی</h2>
+        <p class="mx-auto mt-3 max-w-3xl text-center text-slate-600">هر حوزه رنگ و روایت خودش را دارد تا در جلسه مدیریت سردرگم نشوید.</p>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="card overflow-hidden">
+            <div class="h-2 bg-blue-600"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-extrabold text-blue-700">داشبورد مدیریت فروش</h3>
+              <p class="mt-3 leading-7 text-slate-600">روند فروش ماهانه، سهم کانال‌ها، میانگین سبد و آخرین سفارش‌ها را در یک صفحه می‌بینید. مناسب مدیر فروش و تیم هدف‌گذاری.</p>
+              <a href="admin.html#sales" class="btn-touch mt-5 inline-flex rounded-xl bg-blue-600 px-4 py-2 font-bold text-white hover:bg-blue-700">پیش‌نمایش در پنل</a>
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <div class="h-2 bg-emerald-600"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-extrabold text-emerald-700">داشبورد مدیریت مالی</h3>
+              <p class="mt-3 leading-7 text-slate-600">درآمد، هزینه، سود ناخالص و جریان نقدینگی با اسناد نمونه. مناسب مدیر مالی برای کنترل دوره‌ای وضعیت شرکت.</p>
+              <a href="admin.html#finance" class="btn-touch mt-5 inline-flex rounded-xl bg-emerald-600 px-4 py-2 font-bold text-white hover:bg-emerald-700">پیش‌نمایش در پنل</a>
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <div class="h-2 bg-amber-500"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-extrabold text-amber-700">داشبورد مدیریت منابع انسانی</h3>
+              <p class="mt-3 leading-7 text-slate-600">تعداد پرسنل، جذب، ترک خدمت و حضور و غیاب به‌همراه توزیع نیرو بین واحدها.</p>
+              <a href="admin.html#hr" class="btn-touch mt-5 inline-flex rounded-xl bg-amber-500 px-4 py-2 font-bold text-white hover:bg-amber-600">پیش‌نمایش در پنل</a>
+            </div>
+          </article>
+          <article class="card overflow-hidden">
+            <div class="h-2 bg-violet-600"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-extrabold text-violet-700">داشبورد جامع مدیرعامل</h3>
+              <p class="mt-3 leading-7 text-slate-600">نمای ۳۶۰ درجه سازمان با اتصال نمایشی به <strong>سپیدار</strong> و <strong>فراگستر</strong>؛ خلاصه مالی، گردش‌کار و هشدارهای مدیریتی.</p>
+              <a href="admin.html#ceo" class="btn-touch mt-5 inline-flex rounded-xl bg-violet-600 px-4 py-2 font-bold text-white hover:bg-violet-700">پیش‌نمایش در پنل</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-4">
+        <h2 class="text-center text-3xl font-extrabold">ویژگی‌ها</h2>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="card p-6"><h3 class="font-bold">کارت‌های KPI رنگی</h3><p class="mt-2 text-slate-600">اعداد مهم با درصد تغییر و تفکیک حوزه.</p></div>
+          <div class="card p-6"><h3 class="font-bold">فیلترهای مدیریتی</h3><p class="mt-2 text-slate-600">بازه زمانی، واحد و کانال — ظاهر فیلتر بدون بک‌اند.</p></div>
+          <div class="card p-6"><h3 class="font-bold">نمودارهای ساختگی</h3><p class="mt-2 text-slate-600">خطی، میله‌ای، دونات و رادار برای حس Power BI.</p></div>
+          <div class="card p-6"><h3 class="font-bold">جداول فارسی</h3><p class="mt-2 text-slate-600">سفارش، سند مالی و پرسنل با وضعیت رنگی.</p></div>
+          <div class="card p-6"><h3 class="font-bold">پنل راست‌چین</h3><p class="mt-2 text-slate-600">سایدبار، اعلان و پروفایل برای استفاده روزمره مدیر.</p></div>
+          <div class="card p-6"><h3 class="font-bold">ریسپانسیو کامل</h3><p class="mt-2 text-slate-600">موبایل، تبلت و دسکتاپ بدون به‌هم‌ریختگی.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="py-16">
+      <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 lg:grid-cols-2">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" alt="جلسه مدیریت و بررسی گزارش عملکرد" width="1200" height="800" class="card" />
+        <div>
+          <h2 class="text-3xl font-extrabold">مزایا برای سازمان شما</h2>
+          <ul class="mt-6 space-y-4 text-slate-700">
+            <li class="card p-4"><strong>تصمیم‌گیری سریع:</strong> به‌جای چند فایل اکسل، یک نمای واحد.</li>
+            <li class="card p-4"><strong>یکپارچگی داده:</strong> مسیر اتصال به سپیدار و فراگستر در داشبورد مدیرعامل دیده می‌شود.</li>
+            <li class="card p-4"><strong>نمای مدیریتی:</strong> زبان فارسی روان، مناسب ارائه به هیئت‌مدیره.</li>
+            <li class="card p-4"><strong>هزینه کمتر پیش از استقرار:</strong> ابتدا ظاهر و تجربه کاربری را ببینید، بعد توسعه داده.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-4">
+        <h2 class="text-center text-3xl font-extrabold">تعرفه‌ها</h2>
+        <p class="mt-3 text-center text-slate-600">مبالغ نمایشی هستند و برای شروع گفت‌وگوی مشاوره طراحی شده‌اند.</p>
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+          <article class="card p-6">
+            <h3 class="text-xl font-extrabold">پایه</h3>
+            <p class="mt-2 text-3xl font-extrabold text-sky-800">۱۸ میلیون<small class="text-base font-medium text-slate-500"> / شروع</small></p>
+            <ul class="mt-5 space-y-2 text-slate-700">
+              <li>✓ لندینگ اختصاصی</li>
+              <li>✓ دو داشبورد نمونه</li>
+              <li class="text-slate-400 line-through">✗ اتصال سپیدار</li>
+              <li class="text-slate-400 line-through">✗ کارگاه مدیرعامل</li>
+            </ul>
+            <a href="#contact" class="btn-touch mt-6 inline-flex w-full justify-center rounded-xl border-2 border-sky-700 py-2 font-bold text-sky-800">درخواست مشاوره</a>
+          </article>
+          <article class="card relative border-2 border-sky-700 p-6 shadow-xl">
+            <span class="absolute -top-3 left-4 rounded-full bg-sky-700 px-3 py-1 text-xs font-bold text-white">پیشنهادی</span>
+            <h3 class="text-xl font-extrabold">حرفه‌ای</h3>
+            <p class="mt-2 text-3xl font-extrabold text-sky-800">۴۲ میلیون<small class="text-base font-medium text-slate-500"> / شروع</small></p>
+            <ul class="mt-5 space-y-2 text-slate-700">
+              <li>✓ چهار داشبورد کامل</li>
+              <li>✓ پنل ادمین سفارشی</li>
+              <li>✓ اتصال نمایشی سپیدار و فراگستر</li>
+              <li class="text-slate-400 line-through">✗ پشتیبانی سازمانی ۲۴/۷</li>
+            </ul>
+            <a href="login.html" class="btn-touch mt-6 inline-flex w-full justify-center rounded-xl bg-sky-700 py-2 font-bold text-white hover:bg-sky-800">ورود و مشاهده پنل</a>
+          </article>
+          <article class="card p-6">
+            <h3 class="text-xl font-extrabold">سازمانی</h3>
+            <p class="mt-2 text-3xl font-extrabold text-sky-800">توافقی</p>
+            <ul class="mt-5 space-y-2 text-slate-700">
+              <li>✓ استقرار Power BI واقعی</li>
+              <li>✓ یکپارچه‌سازی سامانه‌ها</li>
+              <li>✓ آموزش مدیران</li>
+              <li>✓ پشتیبانی اختصاصی</li>
+            </ul>
+            <a href="#contact" class="btn-touch mt-6 inline-flex w-full justify-center rounded-xl border-2 border-violet-700 py-2 font-bold text-violet-800">گفت‌وگوی سازمانی</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-16">
+      <div class="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2">
+        <div>
+          <h2 class="text-3xl font-extrabold">درخواست مشاوره فریلنسر هوش تجاری</h2>
+          <p class="mt-3 text-slate-600">فرم فقط ظاهری است و به سرور ارسال نمی‌شود؛ برای نمایش تجربه کاربری طراحی شده است.</p>
+          <div class="card mt-6 space-y-3 p-6">
+            <p><strong>ایمیل نمایشی:</strong> consult@basiratbaan.ir</p>
+            <p><strong>تلفن نمایشی:</strong> ۰۲۱-۹۱۰۹۰۰۰۰</p>
+            <p><strong>ساعات پاسخگویی:</strong> شنبه تا چهارشنبه، ۹ تا ۱۷</p>
+          </div>
+        </div>
+        <form id="consult-form" class="card p-6" novalidate>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-1 block font-semibold">نام</label>
+              <input id="name" class="w-full rounded-xl border border-slate-300 px-3 py-3" placeholder="نام و نام خانوادگی" />
+              <p id="name-error" class="mt-1 hidden text-sm text-rose-600">این فیلد الزامی است.</p>
+            </div>
+            <div>
+              <label for="org" class="mb-1 block font-semibold">سازمان</label>
+              <input id="org" class="w-full rounded-xl border border-slate-300 px-3 py-3" placeholder="نام شرکت" />
+              <p id="org-error" class="mt-1 hidden text-sm text-rose-600">این فیلد الزامی است.</p>
+            </div>
+            <div>
+              <label for="email" class="mb-1 block font-semibold">ایمیل</label>
+              <input id="email" type="email" class="w-full rounded-xl border border-slate-300 px-3 py-3" placeholder="you@company.com" />
+              <p id="email-error" class="mt-1 hidden text-sm text-rose-600">این فیلد الزامی است.</p>
+            </div>
+            <div>
+              <label for="phone" class="mb-1 block font-semibold">تلفن</label>
+              <input id="phone" class="w-full rounded-xl border border-slate-300 px-3 py-3" placeholder="۰۹۱۲..." />
+              <p id="phone-error" class="mt-1 hidden text-sm text-rose-600">این فیلد الزامی است.</p>
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="topic" class="mb-1 block font-semibold">موضوع</label>
+            <select id="topic" class="w-full rounded-xl border border-slate-300 px-3 py-3">
+              <option value="">انتخاب کنید</option>
+              <option>راه‌اندازی داشبورد فروش</option>
+              <option>داشبورد مالی و سپیدار</option>
+              <option>منابع انسانی</option>
+              <option>داشبورد مدیرعامل</option>
+            </select>
+            <p id="topic-error" class="mt-1 hidden text-sm text-rose-600">این فیلد الزامی است.</p>
+          </div>
+          <div class="mt-4">
+            <label for="message" class="mb-1 block font-semibold">پیام</label>
+            <textarea id="message" rows="4" class="w-full rounded-xl border border-slate-300 px-3 py-3" placeholder="نیاز سازمان را کوتاه بنویسید"></textarea>
+            <p id="message-error" class="mt-1 hidden text-sm text-rose-600">این فیلد الزامی است.</p>
+          </div>
+          <button type="submit" class="btn-touch mt-5 w-full rounded-xl bg-sky-700 py-3 font-bold text-white hover:bg-sky-800">ارسال درخواست</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 md:flex-row md:items-center md:justify-between">
+      <p class="font-extrabold text-sky-800">بصیرت‌بان · BasiratBaan</p>
+      <div class="flex flex-wrap gap-4 text-sm font-semibold">
+        <a href="#about">معرفی</a>
+        <a href="#pricing">تعرفه‌ها</a>
+        <a href="login.html">ورود</a>
+        <a href="admin.html">پنل ادمین</a>
+      </div>
+      <p class="text-sm text-slate-500">© ۱۴۰۴ تمامی حقوق این طرح نمایشی محفوظ است.</p>
+    </div>
+  </footer>
+  <script src="assets/js/landing.js"></script>
+</body>
+</html>
